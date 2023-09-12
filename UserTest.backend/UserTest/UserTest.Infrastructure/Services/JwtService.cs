@@ -12,10 +12,11 @@ using UserTest.Domain.Entities;
 using UserTest.Infrastructure.Dtos;
 using System.Web;
 using Microsoft.EntityFrameworkCore;
+using UserTest.Domain.Interfaces;
 
 namespace UserTest.Infrastructure.Services
 {
-    public class JwtService
+    public class JwtService: IJwtService
     {
         private readonly IConfiguration _configuration;
         private readonly DataContext _dataContext;

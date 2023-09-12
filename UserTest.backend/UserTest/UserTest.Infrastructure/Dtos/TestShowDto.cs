@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserTest.Domain.Interfaces
+namespace UserTest.Infrastructure.Dtos
 {
-    internal interface IAuthService
+    public class TestShowDto
     {
+        public string TestName { get; set; } = string.Empty;
     }
 }

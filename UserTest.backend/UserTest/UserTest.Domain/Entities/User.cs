@@ -11,5 +11,8 @@ namespace UserTest.Domain.Entities
         public required string Email { get; set; } = string.Empty;
 
         public string HashPassword { get; set; } = string.Empty;
+
+        public List<TheTest>? TheTests { get; set; }
+
     }
 }

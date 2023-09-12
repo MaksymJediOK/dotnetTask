@@ -71,9 +71,9 @@ namespace UserTest.Api
                         Name = "Me :)"
                     }
                 });
-                //string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //options.IncludeXmlComments(xmlPath);
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
         }
     }

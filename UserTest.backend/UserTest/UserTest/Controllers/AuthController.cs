@@ -15,7 +15,10 @@ namespace UserTest.Api.Controllers
         {
             _jwtService = jwtService;
         }
-
+        /// <summary>
+        /// Registers a new user using Create dto
+        /// </summary> 
+        /// /// <param name="userCreateDto">Dto</param>
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserCreateDto userCreateDto)
         {
@@ -23,7 +26,10 @@ namespace UserTest.Api.Controllers
 
             return Ok(result);
         }
-
+        /// <summary>
+        /// Return jwt token after verifying credentials
+        /// </summary> 
+        /// /// <param name="userLoginDto">Dto</param>
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
@@ -31,11 +37,5 @@ namespace UserTest.Api.Controllers
             return Ok(token);
         }
 
-        [HttpGet("data")]
-        [Authorize]
-        public async Task<IActionResult> GetData()
-        {
-            return Ok("its working");
-        }
     }
 }

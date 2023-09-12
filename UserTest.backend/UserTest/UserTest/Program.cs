@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using UserTest.Api;
 using UserTest.Infrastructure;
 using UserTest.Infrastructure.Services;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +18,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddAuthorization();
 builder.Services.AddSwagger();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CORSPolicy", builder =>
+    {
+        builder
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins("http://localhost:5173");
+    });
+});
 
 
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<TheTestService>();
+builder.Services.AddScoped<InitService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
@@ -27,7 +41,6 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAuthorization();
 var app = builder.Build();
 
 
@@ -38,7 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("CORSPolicy");
 app.UseAuthentication();
 
 app.UseAuthorization();
