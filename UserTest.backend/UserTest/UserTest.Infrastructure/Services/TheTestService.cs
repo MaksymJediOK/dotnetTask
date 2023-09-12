@@ -11,6 +11,7 @@ using System.Web.Http;
 using UserTest.Domain.Entities;
 using UserTest.Infrastructure.Dtos;
 using UserTest.Infrastructure.Interfaces;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace UserTest.Infrastructure.Services
 {
@@ -115,18 +116,14 @@ namespace UserTest.Infrastructure.Services
 
         }
 
-        public async Task<IEnumerable<TestShowDto>> ShowPassedTest(int userId)
+        public async Task<List<TestDto>> ShowPassedTest(int userId)
         {
             var userResults = await _dataContext.Results.Where(x => x.UserId == userId).Select(x => x.TestId).ToListAsync();
 
             var passedTest = await _dataContext.Tests.Where(t => userResults.Contains(t.Id)).ToListAsync();
 
-            var resultList = passedTest.Select(x => new TestShowDto
-            {
-                TestName = x.TestName
-            });
-
-            return resultList;
+            var mappedTest = _mapper.Map<List<TestDto>>(passedTest);
+            return mappedTest; 
         }
 
     }

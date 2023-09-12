@@ -14,6 +14,6 @@ namespace UserTest.Infrastructure.Interfaces
         public Task<List<TheTest>> GetAssignedTests(int userId);
         public Task<TestDto> GetTest(int userId, int testId);
         public Task<double> SubmitAnswers(int userId, int testId, List<int> userAnswers);
-        public Task<IEnumerable<TestShowDto>> ShowPassedTest(int userId);
+        public Task<List<TestDto>> ShowPassedTest(int userId);
     }
 }

@@ -83,7 +83,7 @@ namespace UserTest.Api.Controllers
         public async Task<IActionResult> GetPassedTest()
         {
             var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var res = _testService.ShowPassedTest(userId);
+            var res = await _testService.ShowPassedTest(userId);
 
             return Ok(res);
         }
